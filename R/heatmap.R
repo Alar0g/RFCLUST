@@ -1,5 +1,13 @@
 library(roxygen2)
-roxygenise()
+
+#' Foction Heatmap
+#'
+#' Merge toutes les matrices et efectue la Heatmap sur la matrice de similarité.
+#'
+#' @param Forest le résultats de la fonction apply de sur la fonction RF ( arbre )
+#' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
+#' @import dplyr ggplots ggplot2 GGally
+#' @export
 
 
 

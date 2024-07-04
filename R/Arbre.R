@@ -1,8 +1,18 @@
 library(roxygen2)
-roxygenise()
+
+#' Fonction Arbre DIV
+#'
+#' Construit l'arbre divclust et l'analyse
+#'
+#' @param Data le jeu de donnée nétoyée ( QUANTI)
+#' @param K le nombre de cluster attendu par Divclust.
+#' @param mtry le nombre de variables prises en comptes
+#' @return Matrices de similarité, dissimilarité et absence.
+#' @import dplyr pbapply divclust progress
+#' @export
 
 
-RF <- function(Data,K,mtry){
+Arbre <- function(Data,K,mtry){
 
 
   nb_col = ncol(Data)

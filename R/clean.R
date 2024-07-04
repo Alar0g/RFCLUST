@@ -1,5 +1,14 @@
 library(roxygen2)
-roxygenise()
+
+#' Fonction Clean
+#'
+#' Prépare le dataset à l'utilisation de divclust avec RF
+#'
+#' @param Dat le jeu de donnée brut initial.
+#' @param centr si on veux scale le jeu oui ou non.
+#' @return Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.
+#' @import dplyr
+#' @export
 
 
 clean <- function(Dat, centr = TRUE){
@@ -49,3 +58,5 @@ clean <- function(Dat, centr = TRUE){
   R = list(Data_num,Data_pas_num)
   return(R)
 }
+
+

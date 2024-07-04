@@ -1,5 +1,15 @@
 library(roxygen2)
-roxygenise()
+
+#' Fonction d'analyse
+#'
+#' anlyse la Heatmap
+#'
+#' @param heatmap Heatmap avec dendrograme générée par la fonction heatmap.
+#' @param NbGrp le nombre de groupe que l'on souhaite analyser
+#' @param Data le jeu de donnée néttoyé utilisé dans la fonction RF
+#' @return Les analyses
+#' @import dplyr ggplots ggplot2 GGally
+#' @export
 
 
 Analyse <- function(heatmap,NbGrp,Data) {
