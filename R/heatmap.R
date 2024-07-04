@@ -1,4 +1,4 @@
-library(roxygen2)
+
 
 #' Foction Heatmap
 #'
@@ -6,7 +6,7 @@ library(roxygen2)
 #'
 #' @param Forest le résultats de la fonction apply de sur la fonction RF ( arbre )
 #' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
-#' @import dplyr ggplots ggplot2 GGally
+#' @import dplyr gplots ggplot2 GGally
 #' @export
 
 

@@ -1,4 +1,4 @@
-library(roxygen2)
+
 
 #' Fonction d'analyse
 #'
@@ -8,7 +8,7 @@ library(roxygen2)
 #' @param NbGrp le nombre de groupe que l'on souhaite analyser
 #' @param Data le jeu de donnée néttoyé utilisé dans la fonction RF
 #' @return Les analyses
-#' @import dplyr ggplots ggplot2 GGally
+#' @import dplyr gplots ggplot2 GGally
 #' @export
 
 
