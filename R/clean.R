@@ -1,4 +1,5 @@
-
+library(roxygen2)
+roxygenise()
 
 
 clean <- function(Dat, centr = TRUE){

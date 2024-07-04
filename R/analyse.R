@@ -1,4 +1,5 @@
-
+library(roxygen2)
+roxygenise()
 
 
 Analyse <- function(heatmap,NbGrp,Data) {
