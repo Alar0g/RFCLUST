@@ -7,9 +7,7 @@
 clean(X, centr = TRUE)
 }
 \arguments{
-\item{X}{le jeu de donnée brut initial.}
-
-\item{centr}{si on veux scale le jeu oui ou non.}
+\item{X}{Le jeu de donnée brut}
 }
 \value{
 Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.
