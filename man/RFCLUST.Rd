@@ -11,7 +11,7 @@ RFCLUST(Data_Raw, Center = TRUE, Nb_T, K, mtry)
 
 \item{Center}{Scale le jeu de donnée ?}
 
-\item{Nb_T}{Nombre d'arbres pour la forêt.}
+\item{Nb_T}{Nombre d'trees pour la forêt.}
 
 \item{K}{Nombre de cluster attendu par divclust.}
 

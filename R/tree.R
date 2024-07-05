@@ -1,10 +1,10 @@
 
 
-#' Fonction Arbre DIV
+#' Fonction tree DIV
 #'
-#' Construit l'arbre divclust et l'analyse
+#' Construit l'tree divclust et l'analyse
 #'
-#' @param Data le jeu de donnée nétoyée ( QUANTI)
+#' @param X le jeu de donnée nétoyée ( QUANTI)
 #' @param K le nombre de cluster attendu par Divclust.
 #' @param mtry le nombre de variables prises en comptes
 #' @return Matrices de similarité, dissimilarité et absence.
@@ -12,30 +12,31 @@
 #' @export
 
 
-Arbre <- function(Data,K,mtry){
+tree <- function(data,K,mtry){
 
 
-  nb_col = ncol(Data)
-  Cut_Var <- sample(1:nb_col,size = mtry)
-  Data <- Data[,Cut_Var,drop=F]                                               #Sample des variable
+  nb_col = ncol(X)
+  Cut_Var <- sample(1:nb_col, size = mtry)
+  X <- X[, Cut_Var, drop=F]                                               #Sample des variable
 
   if (mtry == 1){
-    Data$Double <- Data[,1]}                                                    #Divclust a besoin de 2 colonne
+    X$Double <- X[,1]
+  }                                                    #Divclust a besoin de 2 colonne
 
-  test <- sample(1:nrow(Data), size = nrow(Data), replace = TRUE) # Bootstrap
-  DATA_bootstrap <- Data[test, ]
-  OOB_bootstrap  <- Data[-test,]
+  test <- sample(1:nrow(X), size = nrow(X), replace = TRUE) # Bootstrap
+  DATA_bootstrap <- X[test, ]
+  OOB_bootstrap  <- X[-test,]
 
 
   Div <- divclust(DATA_bootstrap, K)                                          # Divclust sur l'échantillon
 
 
-  Occu <- matrix(0,nrow(Data),nrow(Data))                                     #Initialisation des matrices de stockages
-  Diss <- matrix(1,nrow(Data),nrow(Data))
-  Abs <- matrix(0,nrow(Data),nrow(Data))
+  Occu <- matrix(0, nrow(X), nrow(X))                                     #Initialisation des matrices de stockages
+  Diss <- matrix(1, nrow(X), nrow(X))
+  Abs <- matrix(0, nrow(X), nrow(X))
 
 
-  for(i in 2:nrow(Data)){                                                     #itération pour chaque paire d'individu
+  for(i in 2:nrow(X)){                                                     #itération pour chaque paire d'individu
     for(j in 1:(i-1)){
       Asso <- 0
       Disso1 <- 0

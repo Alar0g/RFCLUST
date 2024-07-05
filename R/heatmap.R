@@ -1,10 +1,8 @@
-
-
 #' Foction Heatmap
 #'
 #' Merge toutes les matrices et efectue la Heatmap sur la matrice de similarité.
 #'
-#' @param Forest le résultats de la fonction apply de sur la fonction RF ( arbre )
+#' @param Forest le résultats de la fonction apply de sur la fonction RF ( tree )
 #' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
 #' @import dplyr gplots ggplot2 GGally
 #' @export
@@ -70,6 +68,6 @@ heat <- function(Forest ){
                     scale = "none",
                     col = my_palette)
 
-  return(list(MAP,MAPTEST,Matrice_Sym))
+  return(list(MAP, MAPTEST, Matrice_Sym))
 }
 
