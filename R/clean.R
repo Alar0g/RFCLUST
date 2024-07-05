@@ -10,7 +10,7 @@
 #' @export
 
 
-clean <- function(X, centr = TRUE){
+clean <- function(X, center = TRUE){
 
   X <- as.data.frame(X)                                                     # Forcer un dataframe.
 
@@ -20,7 +20,7 @@ clean <- function(X, centr = TRUE){
 
 
 
-  if( centr == TRUE){
+  if( center == TRUE){
     #X <- scale(X, center = TRUE,)
     X <- as.data.frame(X)
 
