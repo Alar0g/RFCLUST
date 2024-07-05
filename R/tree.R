@@ -12,7 +12,7 @@
 #' @export
 
 
-tree <- function(data,K,mtry){
+tree <- function(X,K,mtry){
 
 
   nb_col = ncol(X)

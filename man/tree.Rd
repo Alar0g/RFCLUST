@@ -4,10 +4,10 @@
 \alias{tree}
 \title{Fonction tree DIV}
 \usage{
-tree(Data, K, mtry)
+tree(X, K, mtry)
 }
 \arguments{
-\item{Data}{le jeu de donnée nétoyée ( QUANTI)}
+\item{X}{le jeu de donnée nétoyée ( QUANTI)}
 
 \item{K}{le nombre de cluster attendu par Divclust.}
 

@@ -13,7 +13,7 @@
 #' @return la heat map et son dendrograme.
 #'
 #' @export
-#'b
+
 
 
 RFCLUST <- function(X, center = TRUE, n_trees, K, mtry){

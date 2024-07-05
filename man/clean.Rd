@@ -4,10 +4,10 @@
 \alias{clean}
 \title{Fonction Clean}
 \usage{
-clean(Dat, centr = TRUE)
+clean(X, centr = TRUE)
 }
 \arguments{
-\item{Dat}{le jeu de donnée brut initial.}
+\item{X}{le jeu de donnée brut initial.}
 
 \item{centr}{si on veux scale le jeu oui ou non.}
 }
