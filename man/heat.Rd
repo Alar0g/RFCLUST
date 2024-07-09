@@ -4,10 +4,10 @@
 \alias{heat}
 \title{Foction Heatmap}
 \usage{
-heat(Forest)
+heat(forest)
 }
 \arguments{
-\item{Forest}{le résultats de la fonction apply de sur la fonction RF ( tree )}
+\item{forest}{le résultats de la fonction apply de sur la fonction RF ( tree )}
 }
 \value{
 Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF

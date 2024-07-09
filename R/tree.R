@@ -16,24 +16,24 @@ tree <- function(X,K,mtry){
 
 
   nb_col = ncol(X)
-  Cut_Var <- sample(1:nb_col, size = mtry)
-  X <- X[, Cut_Var, drop=F]                                               #Sample des variable
+  cut_var <- sample(1:nb_col, size = mtry)
+  X <- X[, cut_var, drop=F]                                               #Sample des variable
 
   if (mtry == 1){
     X$Double <- X[,1]
   }                                                    #Divclust a besoin de 2 colonne
 
   test <- sample(1:nrow(X), size = nrow(X), replace = TRUE) # Bootstrap
-  DATA_bootstrap <- X[test, ]
-  OOB_bootstrap  <- X[-test,]
+  data_bootstrap <- X[test, ]
+  oob_bootstrap  <- X[-test,]
 
 
-  Div <- divclust(DATA_bootstrap, K)                                          # Divclust sur l'échantillon
+  div <- divclust(data_bootstrap, K)                                          # Divclust sur l'échantillon
 
 
-  Occu <- matrix(0, nrow(X), nrow(X))                                     #Initialisation des matrices de stockages
-  Diss <- matrix(1, nrow(X), nrow(X))
-  Abs <- matrix(0, nrow(X), nrow(X))
+  abs <- matrix(0, nrow(X), nrow(X))                                     #Initialisation des matrices de stockages
+  abs <- matrix(1, nrow(X), nrow(X))
+  abs <- matrix(0, nrow(X), nrow(X))
 
 
   for(i in 2:nrow(X)){                                                     #itération pour chaque paire d'individu
@@ -46,34 +46,34 @@ tree <- function(X,K,mtry){
         X <- paste0("C", k)
         nombre <- paste0(i, " ")                                              # Besoin de l'espace pour ignorer les doublons à cause  de divclust
         nombre2 <- paste0(j, " ")
-        chaine <- Div$clusters[[X]]
+        chaine <- div$clusters[[X]]
 
         if (any(grepl(paste0("\\b", nombre, "\\b"), chaine)) && any(grepl(paste0("\\b", nombre2, "\\b"), chaine))) {  #analyse de la chaine de charactère que retourne divclust
           Asso <- 1
-          Occu[i,j] = 1
+          abs[i,j] = 1
           #print("OCCU")
         }
         if ( k == K && Asso == 0){
-          Diss[i,j]= 1
+          abs[i,j]= 1
         }
 
       }
     }
   }
 
-  for( Z in 1:nrow(OOB_bootstrap)){                                           # On regarde les OOB pour signifier les absences.
+  for( Z in 1:nrow(oob_bootstrap)){                                           # On regarde les OOB pour signifier les absences.
 
-    id_oob = OOB_bootstrap[Z,]
-    Row_Nam = rownames(id_oob)
+    id_oob = oob_bootstrap[Z,]
+    row_nam = rownames(id_oob)
 
 
-    Abs[as.integer(Row_Nam),1:(as.integer(Row_Nam)-1)] = 1                    # Toute les paires associé à l'individu qui est OOB sont donc absentes.
-    Abs[(as.integer(Row_Nam)-1):nrow(Abs),as.integer(Row_Nam)] = 1
+    abs[as.integer(row_nam),1:(as.integer(row_nam)-1)] = 1                    # Toute les paires associé à l'individu qui est OOB sont donc absentes.
+    abs[(as.integer(row_nam)-1):nrow(abs),as.integer(row_nam)] = 1
   }
 
-  Diss = Diss - Abs - Occu                                                    # Avec les absences et les associations, facile de voir les paires dissociées.
+  diss = diss - abs - occu                                                    # Avec les absences et les associations, facile de voir les paires dissociées.
 
-  OUT <- list(Occu,Diss,Abs)                                                  # Retourne la liste des 3 matrices
-  return(OUT)                                                                 #( On s'intéresse surtout à Occu pour la heatmap de la matrice de similarité.)
+  out <- list(occu,diss,abs)                                                  # Retourne la liste des 3 matrices
+  return(out)                                                                 #( On s'intéresse surtout à abs pour la heatmap de la matrice de similarité.)
 
 }

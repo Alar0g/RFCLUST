@@ -35,27 +35,27 @@ clean <- function(X, centr = TRUE){
     rownames(X) <- paste0(rownames(X), " ")                                 # Renommer les lignes pour les différencier des .1 à cause du bootstrap et Divclust
   }
 
-  Data_num <- X[, sapply(X, is.numeric)]                                    # Supprimer les colonnes non numériques
+  data_num <- X[, sapply(X, is.numeric)]                                    # Supprimer les colonnes non numériques
 
   non_numeric_columns <- !sapply(X, is.numeric)
 
   if (any(non_numeric_columns)) {
     # Sélectionner les colonnes non numériques
-    Data_pas_num <- X[, non_numeric_columns]
+    data_pas_num <- X[, non_numeric_columns]
 
     # Transformer toutes les colonnes non numériques en facteurs
-    for (col in names(Data_pas_num)) {
-      Data_pas_num[[col]] <- as.factor(Data_pas_num[[col]])
+    for (col in names(data_pas_num)) {
+      data_pas_num[[col]] <- as.factor(data_pas_num[[col]])
     }
   } else {
-    Data_pas_num <- data.frame() # Retourner un dataframe vide si toutes les colonnes sont numériques
+    data_pas_num <- data.frame() # Retourner un dataframe vide si toutes les colonnes sont numériques
   }
 
 
 
 
 
-  R = list(Data_num,Data_pas_num)
+  R = list(data_num,data_pas_num)
   return(R)
 }
 

@@ -5,38 +5,38 @@
 #' anlyse la Heatmap
 #'
 #' @param heatmap Heatmap avec dendrograme générée par la fonction heatmap.
-#' @param NbGrp le nombre de groupe que l'on souhaite analyser
-#' @param Data le jeu de donnée néttoyé utilisé dans la fonction RF
+#' @param nb_grp le nombre de groupe que l'on souhaite analyser
+#' @param X le jeu de donnée néttoyé utilisé dans la fonction RF
 #' @return Les analyses
 #' @import dplyr gplots ggplot2 GGally
 #' @export
 
 
-Analyse <- function(heatmap,NbGrp,Data) {
+analyse <- function(heatmap,nb_grp,X) {
 
   if (!is.null(dev.list())) dev.off()                                           # On assure la bonne utilisation de ggpair
 
   dendroHC <- as.hclust(heatmap$rowDendrogram)                                  # Récupération du dendrograme
 
-  Cutted <- cutree(dendroHC, NbGrp)
+  cutted <- cutree(dendroHC, nb_grp)
 
-  Data$Groupe <- paste0("G", Cutted)                                            # Attribution des groupes issus du dendrograme aux individus.
+  X$Groupe <- paste0("G", cutted)                                            # Attribution des groupes issus du dendrograme aux individus.
 
-  GGpairs_grp <- ggpairs(Data, aes(color = Groupe))                             # ggpairs sur les groupes de notre jeu de donnée.
+  ggpairs_grp <- ggpairs(X, aes(color = Groupe))                             # ggpairs sur les groupes de notre jeu de donnée.
 
-  Sum <- summary(Data_Full)                                                     # summary du JdD
+  sum <- summary(X)                                                     # summary du JdD
 
-  SD <- sapply(Data, function(x) if (is.numeric(x)) sd(x, na.rm = TRUE) else NA) # Calcul des écart types pour chaque colonnes numériques
+  sd <- sapply(X, function(x) if (is.numeric(x)) sd(x, na.rm = TRUE) else NA) # Calcul des écart types pour chaque colonnes numériques
 
 
   groups <- list()                                                              #Initialisation d'une liste de dataset
 
-  for (i in 1:NbGrp) {
-    groups[[i]] <- Data[Data$Groupe == paste0("G", i), ]                        # Pour chaque groupe on stock spécifiquement les individus dans la liste de dataset.
+  for (i in 1:nb_grp) {
+    groups[[i]] <- X[X$Groupe == paste0("G", i), ]                        # Pour chaque groupe on stock spécifiquement les individus dans la liste de dataset.
   }
   # On pourra effectuer des analyses automatiques sur chacuns de ces groupes.
 
 
-  DataGRP <- Data_Full
-  return(list(GGpairs_grp, Sum, SD, DataGRP))
+
+  return(list(ggpairs_grp, sum, sd, X))
 }
