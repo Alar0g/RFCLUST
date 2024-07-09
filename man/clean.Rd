@@ -4,12 +4,12 @@
 \alias{clean}
 \title{Fonction Clean}
 \usage{
-clean(X, centr = TRUE)
+clean(X, center = TRUE)
 }
 \arguments{
-\item{X}{le jeu de donnée brut initial.}
+\item{X}{Le jeu de donnée brut}
 
-\item{centr}{si on veux scale le jeu oui ou non.}
+\item{center}{Scale le jeu de donnée ?}
 }
 \value{
 Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.

@@ -4,14 +4,13 @@
 #'
 #' Prépare le dataset à l'utilisation de divclust avec RF
 #'
-#' @param X le jeu de donnée brut initial.
-#' @param centr si on veux scale le jeu oui ou non.
+#' @inheritParams RFCLUST
 #' @return Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.
 #' @import dplyr
 #' @export
 
 
-clean <- function(X, centr = TRUE){
+clean <- function(X, center = TRUE){
 
   X <- as.data.frame(X)                                                     # Forcer un dataframe.
 
@@ -21,7 +20,7 @@ clean <- function(X, centr = TRUE){
 
 
 
-  if( centr == TRUE){
+  if( center == TRUE){
     #X <- scale(X, center = TRUE,)
     X <- as.data.frame(X)
 
