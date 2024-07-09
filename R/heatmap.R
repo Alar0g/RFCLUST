@@ -67,7 +67,7 @@ heat <- function(forest ){
                     dendrogram = "column",
                     scale = "none",
                     col = my_palette)
-
-  return(list(map, maptest1, matrice_sym))
+  out <-list(map, maptest1, matrice_sym)
+  return(out)
 }
 
