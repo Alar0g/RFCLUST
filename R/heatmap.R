@@ -13,14 +13,14 @@ heat <- function(forest ){
 
   matrices_asso <- lapply(forest,'[[',1)
   som_asso <- Reduce('+',matrices_asso)
-  class(Matrices_Asso)
+  class(matrices_asso)
   som_asso <- as.data.frame(som_asso)                                           # SOMME de toutes les matrices asso
 
   matrices_diss <- lapply(forest,'[[',2)
   som_diss <- Reduce('+',matrices_diss)
   som_diss <- as.data.frame(som_diss)                                           # SOMME de toutes les matrices diss
 
-  addi <- list(som_diss,som_dsso)
+  addi <- list(som_diss,som_asso)
   appartion_paire <- Reduce('+',addi)                                           #Somme des occurence des paires dans les forêts.
 
   #dim(appartion_paire)[1]
