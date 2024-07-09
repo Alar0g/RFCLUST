@@ -31,8 +31,8 @@ tree <- function(X,K,mtry){
   div <- divclust(data_bootstrap, K)                                          # Divclust sur l'échantillon
 
 
-  abs <- matrix(0, nrow(X), nrow(X))                                     #Initialisation des matrices de stockages
-  abs <- matrix(1, nrow(X), nrow(X))
+  occu <- matrix(0, nrow(X), nrow(X))                                     #Initialisation des matrices de stockages
+  diss <- matrix(1, nrow(X), nrow(X))
   abs <- matrix(0, nrow(X), nrow(X))
 
 
@@ -50,11 +50,11 @@ tree <- function(X,K,mtry){
 
         if (any(grepl(paste0("\\b", nombre, "\\b"), chaine)) && any(grepl(paste0("\\b", nombre2, "\\b"), chaine))) {  #analyse de la chaine de charactère que retourne divclust
           Asso <- 1
-          abs[i,j] = 1
+          occu[i,j] = 1
           #print("OCCU")
         }
         if ( k == K && Asso == 0){
-          abs[i,j]= 1
+          diss[i,j]= 1
         }
 
       }
