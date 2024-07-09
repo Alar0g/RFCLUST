@@ -19,7 +19,7 @@
 rfclust <- function(X, center = TRUE, n_trees, K, mtry){
 
   net <- clean(X, center)
-  quali <- Net[[1]]
+  quali <- net[[1]]
 
 
   forest <- pblapply(1:n_trees, function(i){
