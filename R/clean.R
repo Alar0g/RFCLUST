@@ -10,7 +10,7 @@
 #' @export
 
 
-clean <- function(X, center = TRUE){
+clean <- function(X){
 
   X <- as.data.frame(X)                                                     # Forcer un dataframe.
 
@@ -20,19 +20,10 @@ clean <- function(X, center = TRUE){
 
 
 
-  if( center == TRUE){
-    #X <- scale(X, center = TRUE,)
-    X <- as.data.frame(X)
+  rownames(X) <- NULL
+  rownames(X) <- seq_len(nrow(X))
+  rownames(X) <- paste0(rownames(X), " ")                                 # Renommer les lignes pour les différencier des .1 à cause du bootstrap et Divclust
 
-    rownames(X) <- NULL
-    rownames(X) <- seq_len(nrow(X))
-    rownames(X) <- paste0(rownames(X), " ")                                 # Renommer les lignes pour les différencier des .1
-  }
-  else{
-    rownames(X) <- NULL
-    rownames(X) <- seq_len(nrow(X))
-    rownames(X) <- paste0(rownames(X), " ")                                 # Renommer les lignes pour les différencier des .1 à cause du bootstrap et Divclust
-  }
 
   data_num <- X[, sapply(X, is.numeric)]                                    # Supprimer les colonnes non numériques
 
