@@ -4,26 +4,37 @@
 \alias{rfclust}
 \title{Fonction générale}
 \usage{
-rfclust(
-  X,
-  n_trees = 500,
-  K = 2,
-  mtry = 1,
-  ncores = parallel::detectCores() - 1
-)
+rfclust(X, ntrees = 500, K = 2, mtry = 1, ncores = parallel::detectCores() - 1)
 }
 \arguments{
 \item{X}{a data.frame to be clustered}
 
-\item{n_trees}{number of \code{divlust} tress. Default is \code{500}.}
+\item{ntrees}{number of \code{divlust} tress. Default is \code{500}.}
 
 \item{K}{Nombre de cluster attendu par divclust.}
 
 \item{mtry}{Nombre de variables prises en comptes.}
+
+\item{ncores}{number of cpus to parallelize over. Default is
+\code{parallel::detectCores()-1}.}
 }
 \value{
-la heat map et son dendrograme.
+a list of length \code{n_trees}, each elements containing 3 matrices.
 }
 \description{
 Lie les fonctions ensemble j'espère mdr
+}
+\examples{
+library(palmerpenguins)
+mypeng <- as.data.frame(penguins)
+mypeng$year <- as.factor(as.character(mypeng$year),
+                         levels=c("2007", "2008", "2009"),
+                         ordered=TRUE)
+set.seed(123)
+forest_clust <- rfclust(na.omit(mypeng[mypeng$sex=="male", -c(1, 7)]), ntrees = 50, ncores = 1)
+
+if(interactive()){
+  plot(forest_clust)
+}
+
 }
