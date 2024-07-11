@@ -5,6 +5,7 @@
 #' Prépare le dataset à l'utilisation de divclust avec RF
 #'
 #' @inheritParams RFCLUST
+#' @param X Jeu de donnée brut
 #' @return Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.
 #' @import dplyr
 #' @export

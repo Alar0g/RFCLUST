@@ -4,12 +4,10 @@
 \alias{rfclust}
 \title{Fonction générale}
 \usage{
-rfclust(X, center = TRUE, n_trees, K, mtry)
+rfclust(X, n_trees, K, mtry)
 }
 \arguments{
 \item{X}{Le jeu de donnée brut}
-
-\item{center}{Scale le jeu de donnée ?}
 
 \item{n_trees}{Nombre d'trees pour la forêt.}
 
