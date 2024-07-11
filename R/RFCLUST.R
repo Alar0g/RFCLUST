@@ -17,7 +17,7 @@
 
 rfclust <- function(X, n_trees, K, mtry){
 
-  net <- clean(X, center)
+  net <- clean(X)
   quali <- net[[1]]
 
 
