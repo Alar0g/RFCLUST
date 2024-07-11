@@ -11,11 +11,14 @@
 
 #' @return la heat map et son dendrograme.
 #'
+#' @importFrom pbapply pblapply
+#' @importFrom parallel detectCores
+#'
 #' @export
 
 
 
-rfclust <- function(X, n_trees, K, mtry){
+rfclust <- function(X, n_trees, K, mtry, ncores = parallel::detectCores()-1){
 
   net <- clean(X)
   quali <- net[[1]]
@@ -23,7 +26,7 @@ rfclust <- function(X, n_trees, K, mtry){
 
   forest <- pblapply(1:n_trees, function(i){
     tree(quali,K,mtry)
-  })
+  }, cl = ncores)
 
   return(forest)
 }

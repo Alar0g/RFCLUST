@@ -36,32 +36,30 @@ tree <- function(X,K,mtry){
   abs <- matrix(0, nrow(X), nrow(X))
 
 
+  clus_indiv_unik <- sapply(div$clusters, function(x){unique(sapply(strsplit(x, " "), "[", 1))})
+
   for(i in 2:nrow(X)){                                                     #itération pour chaque paire d'individu
     for(j in 1:(i-1)){
-      Asso <- 0
-      Disso1 <- 0
-      Disso2 <- 0
+      # Asso <- 0
 
-      for(k in 1:K){                                                          # On regarde dans chaque clusters
-        X <- paste0("C", k)
-        nombre <- paste0(i, " ")                                              # Besoin de l'espace pour ignorer les doublons à cause  de divclust
-        nombre2 <- paste0(j, " ")
-        chaine <- div$clusters[[X]]
+      # On regarde dans chaque clusters
+      for(k in 1:K){
+        clus_name <- paste0("C", k)
 
-        if (any(grepl(paste0("\\b", nombre, "\\b"), chaine)) && any(grepl(paste0("\\b", nombre2, "\\b"), chaine))) {  #analyse de la chaine de charactère que retourne divclust
+        if(i %in% clus_indiv_unik[k] && j %in% clus_indiv_unik[k]){
+          occu[i,j] <- 1
           Asso <- 1
-          occu[i,j] = 1
-          #print("OCCU")
-        }
-        if ( k == K && Asso == 0){
-          diss[i,j]= 1
         }
 
       }
+      # if(Asso != 0){
+      #   diss[i,j] <- 0
+      # }
     }
   }
 
-  for( Z in 1:nrow(oob_bootstrap)){                                           # On regarde les OOB pour signifier les absences.
+  # On regarde les OOB pour signifier les absences.
+  for( Z in 1:nrow(oob_bootstrap)){
 
     id_oob = oob_bootstrap[Z,]
     row_nam = rownames(id_oob)
@@ -71,9 +69,11 @@ tree <- function(X,K,mtry){
     abs[(as.integer(row_nam)-1):nrow(abs),as.integer(row_nam)] = 1
   }
 
-  diss = diss - abs - occu                                                    # Avec les absences et les associations, facile de voir les paires dissociées.
+  diss <-  diss - abs - occu                                                    # Avec les absences et les associations, facile de voir les paires dissociées.
 
-  out <- list(occu,diss,abs)                                                  # Retourne la liste des 3 matrices
-  return(out)                                                                 #( On s'intéresse surtout à abs pour la heatmap de la matrice de similarité.)
+  # Retourne la liste des 3 matrices
+  #( On s'intéresse surtout à abs pour la heatmap de la matrice de similarité.)
+  out <- list(occu,diss,abs)
+  return(out)
 
 }
