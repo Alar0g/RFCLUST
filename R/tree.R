@@ -7,12 +7,12 @@
 #' @param X le jeu de donnée nétoyée ( QUANTI)
 #' @param K le nombre de cluster attendu par Divclust.
 #' @param mtry le nombre de variables prises en comptes
-#' @return Matrices de similarité, dissimilarité et absence.
+#' @return Matrices de similarité, dissimilarité et absentence.
 #' @import dplyr pbapply divclust progress
 #' @export
 
 
-tree <- function(X,K,mtry){
+mytree <- function(X, K, mtry){
 
 
   nb_col = ncol(X)
@@ -30,50 +30,37 @@ tree <- function(X,K,mtry){
 
   div <- divclust(data_bootstrap, K)                                          # Divclust sur l'échantillon
 
+  rn <- rownames(X)
 
-  occu <- matrix(0, nrow(X), nrow(X))                                     #Initialisation des matrices de stockages
-  diss <- matrix(1, nrow(X), nrow(X))
-  abs <- matrix(0, nrow(X), nrow(X))
+  occu <- matrix(0, nrow(X), nrow(X), dimnames = list(rn, rn))                                     #Initialisation des matrices de stockages
+  absent <- matrix(0, nrow(X), nrow(X), dimnames = list(rn, rn))
 
 
-  clus_indiv_unik <- sapply(div$clusters, function(x){unique(sapply(strsplit(x, " "), "[", 1))})
+  clus_indiv_unik <- sapply(div$clusters, function(x){unique(sapply(strsplit(x, ".", fixed = TRUE), "[", 1))})
 
-  for(i in 2:nrow(X)){                                                     #itération pour chaque paire d'individu
-    for(j in 1:(i-1)){
-      # Asso <- 0
 
-      # On regarde dans chaque clusters
-      for(k in 1:K){
-        clus_name <- paste0("C", k)
+  # On regarde dans chaque clusters
 
-        if(i %in% clus_indiv_unik[k] && j %in% clus_indiv_unik[k]){
-          occu[i,j] <- 1
-          Asso <- 1
-        }
-
+  for(k in 1:K){
+    for(i in clus_indiv_unik[k]){
+      for(j in clus_indiv_unik[k]){
+        occu[i,j] <- 1
       }
-      # if(Asso != 0){
-      #   diss[i,j] <- 0
-      # }
     }
+
   }
 
-  # On regarde les OOB pour signifier les absences.
-  for( Z in 1:nrow(oob_bootstrap)){
-
-    id_oob = oob_bootstrap[Z,]
-    row_nam = rownames(id_oob)
-
-
-    abs[as.integer(row_nam),1:(as.integer(row_nam)-1)] = 1                    # Toute les paires associé à l'individu qui est OOB sont donc absentes.
-    abs[(as.integer(row_nam)-1):nrow(abs),as.integer(row_nam)] = 1
+  # On regarde les OOB pour signifier les absentences.
+  for(Z in rownames(oob_bootstrap)){
+    absent[Z, ] <-  1                    # Toute les paires associé à l'individu qui est OOB sont donc absententes.
+    absent[, Z] <-  1
   }
 
-  diss <-  diss - abs - occu                                                    # Avec les absences et les associations, facile de voir les paires dissociées.
+  diss <-  1 - absent - occu                                                    # Avec les absentences et les associations, facile de voir les paires dissociées.
 
   # Retourne la liste des 3 matrices
-  #( On s'intéresse surtout à abs pour la heatmap de la matrice de similarité.)
-  out <- list(occu,diss,abs)
+  #( On s'intéresse surtout à absent pour la heatmap de la matrice de similarité.)
+  out <- list(occu, diss, absent)
   return(out)
 
 }

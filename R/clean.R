@@ -4,8 +4,7 @@
 #'
 #' Prépare le dataset à l'utilisation de divclust avec RF
 #'
-#' @inheritParams RFCLUST
-#' @param X Jeu de donnée brut
+#' @inheritParams rfclust
 #' @return Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.
 #' @import dplyr
 #' @export
@@ -19,12 +18,9 @@ clean <- function(X){
     X <- X[complete.cases(X), ]
   }
 
-
-
-  rownames(X) <- NULL
-  rownames(X) <- seq_len(nrow(X))
-  rownames(X) <- paste0(rownames(X), " ")                                 # Renommer les lignes pour les différencier des .1 à cause du bootstrap et Divclust
-
+  if(is.null(rownames(X))){
+    rn <- as.character(1:nrow(X))
+  }
 
   data_num <- X[, sapply(X, is.numeric)]                                    # Supprimer les colonnes non numériques
 

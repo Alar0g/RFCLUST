@@ -7,7 +7,7 @@
 clean(X)
 }
 \arguments{
-\item{X}{Jeu de donnée brut}
+\item{X}{Le jeu de donnée brut}
 }
 \value{
 Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.

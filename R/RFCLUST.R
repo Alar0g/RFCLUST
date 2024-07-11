@@ -25,8 +25,10 @@ rfclust <- function(X, n_trees, K, mtry, ncores = parallel::detectCores()-1){
 
 
   forest <- pblapply(1:n_trees, function(i){
-    tree(quali,K,mtry)
+    mytree(quali,K,mtry)
   }, cl = ncores)
+
+  class(forest) <- "rfclust"
 
   return(forest)
 }
