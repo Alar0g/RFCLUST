@@ -4,8 +4,8 @@
 #'
 #' Lie les fonctions ensemble j'espère mdr
 #'
-#' @param X Le jeu de donnée brut
-#' @param n_trees Nombre d'trees pour la forêt.
+#' @param X a data.frame to be clustered
+#' @param n_trees number of \code{divlust} tress. Default is \code{500}.
 #' @param K Nombre de cluster attendu par divclust.
 #' @param mtry Nombre de variables prises en comptes.
 
@@ -20,10 +20,16 @@
 
 rfclust <- function(X, n_trees = 500, K = 2, mtry = 1, ncores = parallel::detectCores()-1){
 
-  X_clean <- clean(X)
+
+  stopifnot(is.data.frame(X))
+
+  if(is.null(rownames(X))){
+    X <- as.character(1:nrow(X))
+    message("No rownames for `X`. using row number instead.")
+  }
 
   forest <- pblapply(1:n_trees, function(i){
-    tree(cbind(X_clean$quanti, X_clean$quali), K, mtry)
+    tree(X, K, mtry)
   }, cl = ncores)
 
   class(forest) <- "rfclust"

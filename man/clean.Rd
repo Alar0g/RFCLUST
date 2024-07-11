@@ -7,7 +7,7 @@
 clean(X)
 }
 \arguments{
-\item{X}{Le jeu de donnée brut}
+\item{X}{a data.frame to be clustered}
 }
 \value{
 Le jeu de donné nétoyé : seulement les colonnes quanti et seulement les colonnes quali.

@@ -19,16 +19,16 @@ tree <- function(X, K, mtry){
   cut_var <- sample(1:nb_col, size = mtry)
   X <- X[, cut_var, drop=F]                                               #Sample des variable
 
-  if (mtry == 1){
-    X$Double <- X[,1]
-  }                                                    #Divclust a besoin de 2 colonne
+  # if (mtry == 1){
+  #   X[, "Double"] <- X[,1]
+  # }                                                    #Divclust a besoin de 2 colonne
 
-  test <- sample(1:nrow(X), size = nrow(X), replace = TRUE) # Bootstrap
-  data_bootstrap <- X[test, ]
-  oob_bootstrap  <- X[-test,]
+  index_boot <- sample(1:nrow(X), size = nrow(X), replace = TRUE) # Bootstrap
+  X_ib <- X[index_boot, ]
+  X_oob  <- X[-index_boot,]
 
 
-  div <- divclust::divclust(data_bootstrap, K)                                          # Divclust sur l'échantillon
+  div <- divclust(X_ib, K)                                          # Divclust sur l'échantillon
 
   rn <- rownames(X)
 
@@ -51,7 +51,7 @@ tree <- function(X, K, mtry){
   }
 
   # On regarde les OOB pour signifier les absentences.
-  for(Z in rownames(oob_bootstrap)){
+  for(Z in rownames(X_oob)){
     absent[Z, ] <-  1                    # Toute les paires associé à l'individu qui est OOB sont donc absententes.
     absent[, Z] <-  1
   }

@@ -1,6 +1,6 @@
 Package: RFCLUST
 Title: USE DIVCLUST IN THE RF METHODE FOR CLUSTERING 
-Version: 0.0.0.1
+Version: 0.0.0.2
 Authors@R: 
     c(person("Alarig", "Vigneras", email = "alarig.vigneras@gmail.com", role = c("aut", "cre")),
     person("Robin", "Genuer", email = "robin.genuer@u-bordeaux.fr", role = c("aut")),
