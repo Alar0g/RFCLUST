@@ -42,7 +42,7 @@ clean <- function(X){
 
 
 
-  R = list(data_num,data_pas_num)
+  R = list("quanti" = data_num, "quali" = data_pas_num)
   return(R)
 }
 

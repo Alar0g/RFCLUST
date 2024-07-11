@@ -18,14 +18,12 @@
 
 
 
-rfclust <- function(X, n_trees, K, mtry, ncores = parallel::detectCores()-1){
+rfclust <- function(X, n_trees = 500, K = 2, mtry = 1, ncores = parallel::detectCores()-1){
 
-  net <- clean(X)
-  quali <- net[[1]]
-
+  X_clean <- clean(X)
 
   forest <- pblapply(1:n_trees, function(i){
-    mytree(quali,K,mtry)
+    tree(cbind(X_clean$quanti, X_clean$quali), K, mtry)
   }, cl = ncores)
 
   class(forest) <- "rfclust"

@@ -12,7 +12,7 @@
 #' @export
 
 
-mytree <- function(X, K, mtry){
+tree <- function(X, K, mtry){
 
 
   nb_col = ncol(X)
@@ -28,7 +28,7 @@ mytree <- function(X, K, mtry){
   oob_bootstrap  <- X[-test,]
 
 
-  div <- divclust(data_bootstrap, K)                                          # Divclust sur l'échantillon
+  div <- divclust::divclust(data_bootstrap, K)                                          # Divclust sur l'échantillon
 
   rn <- rownames(X)
 
@@ -60,7 +60,7 @@ mytree <- function(X, K, mtry){
 
   # Retourne la liste des 3 matrices
   #( On s'intéresse surtout à absent pour la heatmap de la matrice de similarité.)
-  out <- list(occu, diss, absent)
+  out <- list("occu" = occu, "diss" = diss, "absent" = absent)
   return(out)
 
 }
