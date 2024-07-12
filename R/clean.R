@@ -19,8 +19,6 @@ clean <- function(X){
     X <- X[complete.cases(X), ]
   }
 
-
-
   rownames(X) <- NULL
   rownames(X) <- seq_len(nrow(X))
   rownames(X) <- paste0(rownames(X), " ")                                 # Renommer les lignes pour les différencier des .1 à cause du bootstrap et Divclust

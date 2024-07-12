@@ -57,6 +57,7 @@ tree <- function(X,K,mtry){
           diss[i,j]= 1
         }
 
+
       }
     }
   }
