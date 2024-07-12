@@ -2,21 +2,21 @@
 #'
 #' Merge toutes les matrices et efectue la Heatmap sur la matrice de similarité.
 #'
-#' @param forest le résultats de la fonction apply de sur la fonction RF ( tree )
+#' @param x le résultats de la fonction apply de sur la fonction RF ( tree )
 #' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
 #' @import dplyr gplots ggplot2 GGally
 #' @export
 
 
 
-heat <- function(forest ){
+plot.rfclust <- function(x, ...){
 
-  matrices_asso <- lapply(forest,'[[',1)
+  matrices_asso <- lapply(x,'[[',1)
   som_asso <- Reduce('+',matrices_asso)
   class(matrices_asso)
   som_asso <- as.data.frame(som_asso)                                           # SOMME de toutes les matrices asso
 
-  matrices_diss <- lapply(forest,'[[',2)
+  matrices_diss <- lapply(x,'[[',2)
   som_diss <- Reduce('+',matrices_diss)
   som_diss <- as.data.frame(som_diss)                                           # SOMME de toutes les matrices diss
 
@@ -50,12 +50,8 @@ heat <- function(forest ){
   matrice_finale <- as.matrix(matrice_finale)                                   # force la matrice au cas ou
   matrice_sym = matrice_finale + t(matrice_finale) - diag(diag(matrice_finale)) # passe en matrice carrée
 
-
-
-  maptest1 <- heatmap(matrice_sym,Colv = T,Rowv = T, symm = T)                       # génère la heatmap à partir de la matrice carrée
-
-  if (!is.null(dev.list())) {dev.off()}
-  graphics.off()                                                                # pour assurer qu'il n'y ait pas de conflit avec la palette.
+  # if (!is.null(dev.list())) {dev.off()}
+  # graphics.off()                                                                # pour assurer qu'il n'y ait pas de conflit avec la palette.
 
   my_palette <- colorRampPalette(c("lightyellow1", "yellow",'orange2','red3', "red4"))(n = 299)
   # palette + la HT.
@@ -66,8 +62,9 @@ heat <- function(forest ){
                     symm = T,
                     dendrogram = "column",
                     scale = "none",
-                    col = my_palette)
-  out <-list(map, maptest1, matrice_sym)
+                    col = my_palette,
+                    ...)
+  out <-list(map, matrice_sym)
   return(out)
 }
 

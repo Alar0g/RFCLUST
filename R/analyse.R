@@ -12,7 +12,7 @@
 #' @export
 
 
-analyse <- function(heatmap,nb_grp,X) {
+analyse <- function(heatmap, nb_grp, X) {
 
   if (!is.null(dev.list())) dev.off()                                           # On assure la bonne utilisation de ggpair
 

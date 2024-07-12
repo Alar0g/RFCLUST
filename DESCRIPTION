@@ -1,13 +1,23 @@
 Package: RFCLUST
 Title: USE DIVCLUST IN THE RF METHODE FOR CLUSTERING 
-Version: 0.0.0.1
+Version: 0.0.0.3
 Authors@R: 
-    person("Alarig", "Vigneras", email = "alarig.vigneras@etu.u-bordeaux.fr", role = c("aut", "cre"))
+    c(person("Alarig", "Vigneras", email = "alarig.vigneras@gmail.com", role = c("aut", "cre")),
+    person("Robin", "Genuer", email = "robin.genuer@u-bordeaux.fr", role = c("aut")),
+    person("Boris", "Hejblum", email = "boris.hejblum@u-bordeaux.fr", role = c("aut")))
 Description: Forest of divclust-trees, Analyse it with a similarity matrix that we use to make a heatmap.
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Depends: R (>= 3.5.0)
-Imports: dplyr, ggplot2, gplots, GGally, pbapply, progress, divclust
+Depends: R (>= 3.5.0), 
+         parallel
+Imports: divclust,
+         dplyr, 
+         ggplot2, 
+         gplots, 
+         GGally, 
+         pbapply, 
+         progress
+Suggests: palmerpenguins
 LazyData: true

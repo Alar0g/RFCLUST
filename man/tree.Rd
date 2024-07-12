@@ -14,7 +14,7 @@ tree(X, K, mtry)
 \item{mtry}{le nombre de variables prises en comptes}
 }
 \value{
-Matrices de similarité, dissimilarité et absence.
+Matrices de similarité, dissimilarité et absentence.
 }
 \description{
 Construit l'tree divclust et l'analyse
