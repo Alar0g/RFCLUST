@@ -11,50 +11,12 @@
 
 plot.rfclust <- function(x, ...){
 
-  matrices_asso <- lapply(x,'[[',1)
-  som_asso <- Reduce('+',matrices_asso)
-  class(matrices_asso)
-  som_asso <- as.data.frame(som_asso)                                           # SOMME de toutes les matrices asso
+  stopifnot(is.matrix(x))
 
-  matrices_diss <- lapply(x,'[[',2)
-  som_diss <- Reduce('+',matrices_diss)
-  som_diss <- as.data.frame(som_diss)                                           # SOMME de toutes les matrices diss
 
-  addi <- list(som_diss,som_asso)
-  appartion_paire <- Reduce('+',addi)                                           #Somme des occurence des paires dans les forêts.
-
-  #dim(appartion_paire)[1]
-
-  matrice_finale <- som_asso
-  sum(is.na(matrice_finale))
-
-  if(dim(matrice_finale)[1] == dim(appartion_paire)[1] && dim(matrice_finale)[2] == dim(appartion_paire)[2]){ # Verifie que les matrices correspondes.
-    for( i in 1:nrow(matrice_finale)){
-      for(j in 1:i){
-        if( j == i ){
-          matrice_finale[i,j] = 1                                               #Diago = 1
-        }
-        else{
-          if(appartion_paire[i,j]== 0){                                         # Reste à pas d'intéraction.
-            matrice_finale[i,j]=0
-          }
-          else{
-            A = matrice_finale[i,j]                                             # Divise le nombre de similaire par le nombre d'occurence
-            matrice_finale[i,j] = A / appartion_paire[i,j]
-          }
-        }
-      }
-    }
-  }
-
-  matrice_finale <- as.matrix(matrice_finale)                                   # force la matrice au cas ou
-  matrice_sym = matrice_finale + t(matrice_finale) - diag(diag(matrice_finale)) # passe en matrice carrée
-
-  # if (!is.null(dev.list())) {dev.off()}
-  # graphics.off()                                                                # pour assurer qu'il n'y ait pas de conflit avec la palette.
 
   my_palette <- colorRampPalette(c("lightyellow1", "yellow",'orange2','red3', "red4"))(n = 299)
-  # palette + la HT.
+
 
   map  <- heatmap.2(as.matrix(matrice_sym),
                     trace = "none",
@@ -64,7 +26,7 @@ plot.rfclust <- function(x, ...){
                     scale = "none",
                     col = my_palette,
                     ...)
-  out <-list(map, matrice_sym)
-  return(out)
+
+  return(map = "Heatmap")
 }
 

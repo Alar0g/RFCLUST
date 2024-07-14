@@ -55,5 +55,5 @@ rfclust <- function(X, ntrees = 500, K = 2, mtry = 1, ncores = parallel::detectC
 
   class(forest) <- "rfclust"
 
-  return(forest)
+  return(forest = "Forest")
 }
