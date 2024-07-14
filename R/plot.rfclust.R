@@ -3,6 +3,7 @@
 #' Merge toutes les matrices et efectue la Heatmap sur la matrice de similarité.
 #'
 #' @param x le résultats de la fonction apply de sur la fonction RF ( tree )
+#' @param ... more parameters if required
 #' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
 #' @import dplyr gplots ggplot2 GGally
 #' @export

@@ -12,12 +12,12 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: R (>= 3.5.0), 
          parallel
-Imports: divclust,
-         dplyr, 
+Imports: dplyr, 
          ggplot2, 
          gplots, 
          GGally, 
          pbapply, 
          progress
+Remotes: Alar0g/divclust
 Suggests: palmerpenguins
 LazyData: true
