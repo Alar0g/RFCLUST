@@ -48,7 +48,7 @@ sum.rfclust <- function(x, ...){
   #############
 
   sum <- summary(X)                                                     # summary du JdD
-
+                                                                                    apply(array, margin, ...)
   sd <- sapply(X, function(x) if (is.numeric(x)) sd(x, na.rm = TRUE) else NA) # Calcul des écart types pour chaque colonnes numériques
 
 
