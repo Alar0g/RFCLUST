@@ -43,7 +43,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck github::chavent/divclust
+          extra-packages: any::rcmdcheck github::Alar0g/divclust
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
