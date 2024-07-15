@@ -14,15 +14,13 @@
 
 analyse <- function(heatmap, nb_grp, X) {
 
-  if (!is.null(dev.list())) dev.off()                                           # On assure la bonne utilisation de ggpair
-
   dendroHC <- as.hclust(heatmap$rowDendrogram)                                  # Récupération du dendrograme
 
   cutted <- cutree(dendroHC, nb_grp)
 
-  X$Groupe <- paste0("G", cutted)                                            # Attribution des groupes issus du dendrograme aux individus.
+  X$Group <- paste0("G", cutted)                                            # Attribution des groupes issus du dendrograme aux individus.
 
-  ggpairs_grp <- ggpairs(X, aes(color = Groupe))                             # ggpairs sur les groupes de notre jeu de donnée.
+  ggpairs_grp <- ggpairs(X, aes_string(color = "Group"))                             # ggpairs sur les groupes de notre jeu de donnée.
 
   sum <- summary(X)                                                     # summary du JdD
 
