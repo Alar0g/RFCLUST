@@ -3,8 +3,11 @@
 #' Merge toutes les matrices et efectue la Heatmap sur la matrice de similarité.
 #'
 #' @param x le résultats de la fonction apply de sur la fonction RF ( tree )
+#' @param ... other argumetns to be passed to and from other methods.
 #' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
 #' @import dplyr gplots ggplot2 GGally
+#' @importFrom grDevices colorRampPalette
+#' @importFrom stats as.hclust complete.cases cutree
 #' @export
 
 
@@ -49,9 +52,6 @@ plot.rfclust <- function(x, ...){
 
   matrice_finale <- as.matrix(matrice_finale)                                   # force la matrice au cas ou
   matrice_sym = matrice_finale + t(matrice_finale) - diag(diag(matrice_finale)) # passe en matrice carrée
-
-  # if (!is.null(dev.list())) {dev.off()}
-  # graphics.off()                                                                # pour assurer qu'il n'y ait pas de conflit avec la palette.
 
   my_palette <- colorRampPalette(c("lightyellow1", "yellow",'orange2','red3', "red4"))(n = 299)
   # palette + la HT.

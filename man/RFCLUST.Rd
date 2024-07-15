@@ -27,9 +27,9 @@ Lie les fonctions ensemble j'espère mdr
 \examples{
 library(palmerpenguins)
 mypeng <- as.data.frame(penguins)
-mypeng$year <- as.factor(as.character(mypeng$year),
-                         levels=c("2007", "2008", "2009"),
-                         ordered=TRUE)
+mypeng$year <- factor(as.character(mypeng$year),
+                      levels=c("2007", "2008", "2009"),
+                      ordered=TRUE)
 set.seed(123)
 forest_clust <- rfclust(na.omit(mypeng[mypeng$sex=="male", -c(1, 7)]), ntrees = 50, ncores = 1)
 
