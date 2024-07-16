@@ -23,13 +23,15 @@
 #' library(palmerpenguins)
 #' mypeng <- as.data.frame(penguins)
 #' mypeng$year <- factor(as.character(mypeng$year),
-#'                       levels=c("2007", "2008", "2009"),
-#'                       ordered=TRUE)
+#'                          levels=c("2007", "2008", "2009"),
+#'                          ordered=TRUE)
 #' set.seed(123)
 #' forest_clust <- rfclust(na.omit(mypeng[mypeng$sex=="male", -c(1, 7)]), ntrees = 50, ncores = 1)
 #'
 #' if(interactive()){
-#'   plot(forest_clust)
+#'  resume <- summary(forest_clust)
+#'
+#'  plot(resume$Matrix)
 #' }
 #'
 
@@ -55,6 +57,8 @@ rfclust <- function(X, ntrees = 500, K = 2, mtry = 1, ncores = parallel::detectC
   }, cl = ncores)
 
   class(forest) <- "rfclust"
+  print(" We advise you do use the summary() on this object to agregate the result of this forest.")
+  print("The next stape would be for represent the forest's result with the associated plot() function")
 
-  return(forest)
+  return(forest = "Forest")
 }
