@@ -2,12 +2,12 @@
 % Please edit documentation in R/summary.rfclust.R
 \name{summary.rfclust}
 \alias{summary.rfclust}
-\title{Merge all matrices and some analysis}
+\title{summary S3 method for rfclust objects}
 \usage{
-\method{summary}{rfclust}(x, ...)
+\method{summary}{rfclust}(object, ...)
 }
 \arguments{
-\item{x}{the results of the apply function on the RF function (tree)}
+\item{object}{the results of the apply function on the RF function (tree)}
 
 \item{...}{more parameters if required}
 }

@@ -1,11 +1,11 @@
 Package: RFCLUST
-Title: Random Forest of Divclust Trees for Unsupervised Clustering
-Version: 0.0.0.4
+Title: Random Forests of Divclust Trees for Unsupervised Clustering
+Version: 0.0.0.5
 Authors@R: 
     c(person("Alarig", "Vigneras", email = "alarig.vigneras@gmail.com", role = c("aut")),
     person("Robin", "Genuer", email = "robin.genuer@u-bordeaux.fr", role = c("aut")),
     person("Boris", "Hejblum", email = "boris.hejblum@u-bordeaux.fr", role = c("aut")),
-    person("SISTM", "Team", email = "sistm.maintainer@gmail.com", role = c("cre")),)
+    person("SISTM", "Team", email = "sistm.maintainer@gmail.com", role = c("cre")))
 Description: Forest of divclust-trees, Analyse it with a similarity matrix that we use to make a heatmap.
 License: GPL-3
 Encoding: UTF-8

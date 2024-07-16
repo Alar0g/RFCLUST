@@ -1,6 +1,4 @@
-#'
-#'
-#'
+#' S3 plot method for rfclust.summary objects
 #'
 #' @param x the cumulative similarity matrix
 #' @param ... other arguments to be passed to and from other methods.
@@ -13,22 +11,19 @@
 
 
 
-plot.rfclust <- function(x, ...){
-
-  stopifnot(is.matrix(x))
+plot.rfclust.summary <- function(x, ...){
 
   my_palette <- colorRampPalette(c("lightyellow1", "yellow",'orange2','red3', "red4"))(n = 299)
 
+  map <- heatmap.2(as.matrix(x$similarity_matrix),
+                   trace = "none",
+                   symkey = F,
+                   symm = T,
+                   dendrogram = "column",
+                   scale = "none",
+                   col = my_palette,
+                   ...)
 
-  map  <- heatmap.2(as.matrix(matrice_sym),
-                    trace = "none",
-                    symkey = F,
-                    symm = T,
-                    dendrogram = "column",
-                    scale = "none",
-                    col = my_palette,
-                    ...)
-
-  return(map = "Heatmap")
+  return(invisible(map))
 }
 
