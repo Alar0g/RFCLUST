@@ -14,27 +14,24 @@
 
 analyse <- function(heatmap, nb_grp, X) {
 
-  dendroHC <- as.hclust(heatmap$rowDendrogram)                                  # Récupération du dendrograme
+  # Recovery of the dendrogram
+  dendroHC <- as.hclust(heatmap$rowDendrogram)
 
   cutted <- cutree(dendroHC, nb_grp)
 
-  X$Group <- paste0("G", cutted)                                            # Attribution des groupes issus du dendrograme aux individus.
+  # Assignment of groups from the dendrogram to individuals.
+  X$Group <- paste0("G", cutted)
 
-  ggpairs_grp <- ggpairs(X, aes_string(color = "Group"))                             # ggpairs sur les groupes de notre jeu de donnée.
+  # ggpairs on the groups in our dataset.
+  ggpairs_grp <- ggpairs(X, aes_string(color = "Group"))
 
-  sum <- summary(X)                                                     # summary du JdD
+  #Initializing a dataset list
+  groups <- list()
 
-  sd <- sapply(X, function(x) if (is.numeric(x)) sd(x, na.rm = TRUE) else NA) # Calcul des écart types pour chaque colonnes numériques
-
-
-  groups <- list()                                                              #Initialisation d'une liste de dataset
-
+  # For each group we specifically store the individuals in the dataset list.
   for (i in 1:nb_grp) {
-    groups[[i]] <- X[X$Groupe == paste0("G", i), ]                        # Pour chaque groupe on stock spécifiquement les individus dans la liste de dataset.
+    groups[[i]] <- X[X$Groupe == paste0("G", i), ]
   }
-  # On pourra effectuer des analyses automatiques sur chacuns de ces groupes.
-
-
 
   return(list(ggpairs_grp, sum, sd, X))
 }

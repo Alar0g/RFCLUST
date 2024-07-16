@@ -1,11 +1,11 @@
-#' Foction Heatmap
 #'
-#' Merge toutes les matrices et efectue la Heatmap sur la matrice de similarité.
 #'
-#' @param x le résultats de la fonction apply de sur la fonction RF ( tree )
-#' @param ... other argumetns to be passed to and from other methods.
+#'
+#'
+#' @param x the cumulative similarity matrix
+#' @param ... other arguments to be passed to and from other methods.
 
-#' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
+#' @return Provides the associated heatmap of the similarity matrix
 #' @import dplyr gplots ggplot2 GGally
 #' @importFrom grDevices colorRampPalette
 #' @importFrom stats as.hclust complete.cases cutree

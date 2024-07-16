@@ -20,7 +20,8 @@ Imports:
     gplots, 
     GGally, 
     pbapply, 
-    progress
+    progress,
+    tibble
 Remotes: 
     Alar0g/divclust
 Suggests: 

@@ -1,15 +1,15 @@
 
 #'
-#' Merge toutes les matrices
+#' Merge all matrices and some analysis
 #'
-#' @param x le résultats de la fonction apply de sur la fonction RF ( tree )
+#' @param x the results of the apply function on the RF function (tree)
 #' @param ... more parameters if required
-#' @return Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF
+#' @return Provides the cumulative similarity matrix and some analysis
 #' @import dplyr gplots ggplot2 GGally
 #' @export
 
 
-sum.rfclust <- function(x, ...){
+summary.rfclust <- function(x, ...){
 
   matrices_asso <- lapply(x,'[[',1)
   som_asso <- Reduce('+',matrices_asso)
@@ -47,9 +47,11 @@ sum.rfclust <- function(x, ...){
 
   #############
 
-  sum <- summary(X)                                                     # summary du JdD
-                                                                                    apply(array, margin, ...)
-  sd <- sapply(X, function(x) if (is.numeric(x)) sd(x, na.rm = TRUE) else NA) # Calcul des écart types pour chaque colonnes numériques
+  #Basic summary
+  sum <- summary(X)
+
+  #Standard deviation for X's numerical variables
+  sd <- sapply(X, function(x) if (is.numeric(x)) sd(x, na.rm = TRUE) else NA)
 
 
 

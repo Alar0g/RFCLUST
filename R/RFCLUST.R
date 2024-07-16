@@ -57,6 +57,8 @@ rfclust <- function(X, ntrees = 500, K = 2, mtry = 1, ncores = parallel::detectC
   }, cl = ncores)
 
   class(forest) <- "rfclust"
+  print(" We advise you do use the summary() on this object to agregate the result of this forest.")
+  print("The next stape would be for represent the forest's result with the associated plot() function")
 
   return(forest = "Forest")
 }

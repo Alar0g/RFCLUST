@@ -9,11 +9,7 @@
 \arguments{
 \item{x}{le résultats de la fonction apply de sur la fonction RF ( tree )}
 
-<<<<<<< HEAD
-\item{...}{more parameters if required}
-=======
 \item{...}{other argumetns to be passed to and from other methods.}
->>>>>>> a2263033fd0f9e45755a6615369a48741ea12316
 }
 \value{
 Fourni les 2 type de heatmap + la matrice de similarité cumulée de la RF

@@ -28,13 +28,8 @@ Lie les fonctions ensemble j'espère mdr
 library(palmerpenguins)
 mypeng <- as.data.frame(penguins)
 mypeng$year <- factor(as.character(mypeng$year),
-<<<<<<< HEAD
                          levels=c("2007", "2008", "2009"),
                          ordered=TRUE)
-=======
-                      levels=c("2007", "2008", "2009"),
-                      ordered=TRUE)
->>>>>>> a2263033fd0f9e45755a6615369a48741ea12316
 set.seed(123)
 forest_clust <- rfclust(na.omit(mypeng[mypeng$sex=="male", -c(1, 7)]), ntrees = 50, ncores = 1)
 
