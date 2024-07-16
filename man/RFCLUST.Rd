@@ -39,4 +39,15 @@ if(interactive()){
  plot(resume$Matrix)
 }
 
+if(interactive()){
+   ncol <- 15
+   nobs_pg <- 43
+   diff_mean <- 5
+   X <- matrix(rnorm(n = ncol*nobs_pg, mean = 0, sd = 1), ncol=ncol)
+   Y <- matrix(rnorm(n = ncol*nobs_pg, mean = diff_mean, sd = 1), ncol=ncol)
+   mysim_data <- rbind.data.frame(X,Y)
+   res <- rfclust(mysim_data)
+   s <- summary(res)
+   plot(s)
+}
 }
